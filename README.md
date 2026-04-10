@@ -1,45 +1,83 @@
-# 📚 Library Management System (PostgreSQL)
+# 📚 Library Management System
+
+<p align="center">
+  <b>PostgreSQL-Based Relational Database Project</b><br>
+  Designed for real-world library operations & data analytics
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/PostgreSQL-Database-blue?style=for-the-badge&logo=postgresql">
+  <img src="https://img.shields.io/badge/SQL-Advanced-orange?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Project-Production--Ready-success?style=for-the-badge">
+</p>
+
+---
 
 ## 🚀 Overview
 
-A relational database system built using PostgreSQL to manage library operations such as book inventory, member records, and issue/return tracking.
+A **fully structured relational database system** that models real-world library workflows including:
 
-This project demonstrates strong fundamentals of database design, normalization, and SQL querying.
+* 📖 Book Inventory Management
+* 👥 Member Tracking
+* 🔁 Issue & Return System
+* 📊 Analytical Reporting
 
----
-
-## 🏗️ Database Design
-
-### Tables
-
-* **branch** — Stores branch details
-* **employees** — Staff data
-* **books** — Book inventory
-* **members** — Registered users
-* **issued_status** — Issued book records
-* **return_status** — Returned book records
-
-### Relationships
-
-* Employees belong to branches
-* Books are issued to members via employees
-* Return records are linked to issued books
+Built with a focus on **data integrity, normalization, and efficient querying**.
 
 ---
 
-## ⚙️ Features
+## 🎯 Key Highlights
 
-* CRUD operations (Insert, Update, Delete, Select)
-* Book issue and return tracking
-* Member activity tracking
-* Rental revenue analysis
-* Identification of unreturned books
+✔️ Normalized relational schema
+✔️ Strong use of foreign key constraints
+✔️ Real-world SQL queries (joins, aggregations)
+✔️ Business-oriented insights & reporting
 
 ---
 
-## 📊 Key Queries
+## 🏗️ Database Architecture
 
-### Find Unreturned Books
+```mermaid
+erDiagram
+    BRANCH ||--o{ EMPLOYEES : manages
+    EMPLOYEES ||--o{ ISSUED_STATUS : issues
+    MEMBERS ||--o{ ISSUED_STATUS : borrows
+    BOOKS ||--o{ ISSUED_STATUS : tracked
+    ISSUED_STATUS ||--o{ RETURN_STATUS : returns
+```
+
+---
+
+## 🧩 Core Modules
+
+### 📘 Book Management
+
+* Add and categorize books
+* Track availability status
+* Identify high-demand books
+
+### 👤 Member Management
+
+* Register and manage users
+* Track borrowing activity
+
+### 🔄 Transaction System
+
+* Issue books
+* Return tracking
+* Detect unreturned books
+
+### 📊 Analytics & Reporting
+
+* Rental revenue insights
+* Frequent users detection
+* Category-wise performance
+
+---
+
+## 🧠 Sample Queries
+
+### 🔍 Unreturned Books
 
 ```sql
 SELECT isu.*
@@ -49,7 +87,7 @@ ON isu.issued_id = rs.issued_id
 WHERE rs.return_id IS NULL;
 ```
 
-### Rental Income by Category
+### 💰 Revenue Analysis
 
 ```sql
 SELECT 
@@ -62,7 +100,7 @@ ON b.isbn = s.issued_book_isbn
 GROUP BY b.category;
 ```
 
-### Frequent Members
+### 👥 Power Users
 
 ```sql
 SELECT 
@@ -75,31 +113,44 @@ HAVING COUNT(*) > 1;
 
 ---
 
-## 🛠️ Tech Stack
+## ⚙️ Tech Stack
 
-* PostgreSQL
-* SQL (DDL, DML, DQL)
+| Layer    | Technology               |
+| -------- | ------------------------ |
+| Database | PostgreSQL               |
+| Language | SQL                      |
+| Concepts | Joins, CTAS, Aggregation |
 
 ---
 
 ## 📁 Project Structure
 
+```
 library-management-system/
 │── library_project_01.sql
 │── README.md
-
+```
 
 ---
 
-## 🔮 Future Improvements
+## 🔮 Future Scope
 
-* Stored procedures and triggers
-* API integration (Node.js)
-* Frontend dashboard (React)
+* 🚀 REST API integration (Node.js)
+* 🎨 Frontend dashboard (React)
+* 🔐 Role-based access control
+* ⚡ Stored procedures & triggers
 
 ---
 
 ## 👨‍💻 Author
 
-Prateek Yadav
+**Prateek Yadav**
 B.Tech CSE
+
+---
+
+## ⭐ Show Your Support
+
+If you like this project, give it a ⭐ on GitHub — it helps a lot!
+
+---
