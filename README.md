@@ -1,61 +1,57 @@
-📚 Library Management System (PostgreSQL)
+# 📚 Library Management System (PostgreSQL)
 
-🚀 Overview
+## 🚀 Overview
 
-The Library Management System is a relational database project built using PostgreSQL, designed to simulate real-world library operations. It efficiently manages books, members, employees, and transactions such as issuing and returning books.
+A relational database system built using PostgreSQL to manage library operations such as book inventory, member records, and issue/return tracking.
 
-This project demonstrates strong understanding of database design, normalization, and advanced SQL queries.
+This project demonstrates strong fundamentals of database design, normalization, and SQL querying.
 
-🏗️ Database Architecture
-📌 Core Tables
-branch – Stores branch details
-employees – Staff information
-books – Book inventory
-members – Registered users
-issued_status – Issued book records
-return_status – Returned book records
-🔗 Relationships
-Employees are assigned to branches
-Books are issued to members via employees
-Return records are linked to issued books
-⚙️ Features
-🔹 CRUD Operations
-Add new books
-Update member details
-Delete issued records
-Retrieve issued data
-🔹 Analytical Queries
-Books by category
-Rental revenue calculation
-Active members (last 4 years)
-Employee & branch insights
-🔹 Advanced SQL Concepts
-JOINs (INNER, LEFT, RIGHT)
-GROUP BY & HAVING
-Aggregation (COUNT, SUM)
-CTAS (Create Table As Select)
-📊 Key Functionalities
-✅ Book Management
-Insert and categorize books
-Identify high-value books
-✅ Member Management
-Update member details
-Track frequent borrowers
-✅ Issue & Return System
-Track issued books
-Detect unreturned books
-✅ Reporting & Insights
-Rental income by category
-Book issue trends
-Branch-level analysis
-🧠 Sample Queries
-🔍 Find Unreturned Books
+---
+
+## 🏗️ Database Design
+
+### Tables
+
+* **branch** — Stores branch details
+* **employees** — Staff data
+* **books** — Book inventory
+* **members** — Registered users
+* **issued_status** — Issued book records
+* **return_status** — Returned book records
+
+### Relationships
+
+* Employees belong to branches
+* Books are issued to members via employees
+* Return records are linked to issued books
+
+---
+
+## ⚙️ Features
+
+* CRUD operations (Insert, Update, Delete, Select)
+* Book issue and return tracking
+* Member activity tracking
+* Rental revenue analysis
+* Identification of unreturned books
+
+---
+
+## 📊 Key Queries
+
+### Find Unreturned Books
+
+```sql
 SELECT isu.*
 FROM issued_status isu
 LEFT JOIN return_status rs 
 ON isu.issued_id = rs.issued_id
 WHERE rs.return_id IS NULL;
-💰 Rental Income by Category
+```
+
+### Rental Income by Category
+
+```sql
 SELECT 
     b.category,
     COUNT(s.issued_id) AS times_issued,
@@ -64,31 +60,46 @@ FROM books b
 JOIN issued_status s 
 ON b.isbn = s.issued_book_isbn
 GROUP BY b.category;
-👥 Frequent Members
+```
+
+### Frequent Members
+
+```sql
 SELECT 
     issued_member_id,
     COUNT(*) AS total_books
 FROM issued_status
 GROUP BY issued_member_id
 HAVING COUNT(*) > 1;
-📁 Project Structure
+```
+
+---
+
+## 🛠️ Tech Stack
+
+* PostgreSQL
+* SQL (DDL, DML, DQL)
+
+---
+
+## 📁 Project Structure
+
 library-management-system/
 │── library_project_01.sql
 │── README.md
-🛠️ Tech Stack
-Database: PostgreSQL
-Language: SQL (DDL, DML, DQL)
-💡 Real-World Applications
-Library automation systems
-Inventory management systems
-Rental service platforms
-Database design practice
-🔮 Future Enhancements
-Stored Procedures & Triggers
-Role-based access control
-REST API integration (Node.js)
-Frontend dashboard (React)
-👨‍💻 Author
+
+
+---
+
+## 🔮 Future Improvements
+
+* Stored procedures and triggers
+* API integration (Node.js)
+* Frontend dashboard (React)
+
+---
+
+## 👨‍💻 Author
 
 Prateek Yadav
-B.Tech (CSE)
+B.Tech CSE
